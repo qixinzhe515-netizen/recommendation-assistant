@@ -1,0 +1,20 @@
+{
+  "name": "推荐助手",
+  "short_name": "推荐助手",
+  "description": "根据你的画像和需求，只推荐一个最适合的中国大陆商品。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f8fa",
+  "theme_color": "#ff2442",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

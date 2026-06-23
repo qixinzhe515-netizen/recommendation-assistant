@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ff2442" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="推荐助手" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="description" content="回答几个问题，说出你需要什么，推荐助手只给你一个最适合的中国大陆商品选择。" />
+    <meta property="og:title" content="推荐助手" />
+    <meta property="og:description" content="根据你的画像和需求，只推荐一个最适合的商品。" />
+    <meta property="og:type" content="website" />
+    <title>推荐助手</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css?v=20260624-pwa" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="mini-actions" aria-label="页面操作">
+        <button class="mini-button hidden" id="resetButton" type="button">重新答题</button>
+        <button class="mini-button hidden" id="backNeedButton" type="button">返回需求</button>
+        <button class="mini-button" id="shareButton" type="button">分享</button>
+      </div>
+      <section class="topbar" aria-label="应用状态">
+        <div>
+          <p class="eyebrow">只推荐一个最适合的选择</p>
+          <h1>推荐助手</h1>
+        </div>
+      </section>
+
+      <section class="layout">
+        <section class="main-panel">
+          <div id="profileStep" class="step-view page-view">
+            <div class="section-heading">
+              <p class="eyebrow">问题界面</p>
+              <h2>先回答 11 个精准问题</h2>
+              <p>用很少的信息了解你的现状、习惯和偏好。后面每次推荐都会基于这些答案判断。</p>
+            </div>
+
+            <form id="profileForm" class="question-grid">
+              <label class="field">
+                <span>1. 你现在的生活状态更接近？</span>
+                <select name="lifeStage" required>
+                  <option value="">请选择</option>
+                  <option>学习阶段</option>
+                  <option>稳定工作</option>
+                  <option>自由职业/自雇</option>
+                  <option>照顾家庭</option>
+                  <option>正在过渡或变化中</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>2. 你的日常节奏是？</span>
+                <select name="dailyPace" required>
+                  <option value="">请选择</option>
+                  <option>很忙，想省时间</option>
+                  <option>比较规律</option>
+                  <option>时间灵活</option>
+                  <option>经常临时变化</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>3. 你通常怎么花钱？</span>
+                <select name="budget" required>
+                  <option value="">请选择</option>
+                  <option>省钱优先</option>
+                  <option>性价比优先</option>
+                  <option>品质优先</option>
+                  <option>省心优先</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>4. 你选东西最看重哪一个？</span>
+                <select name="priority" required>
+                  <option value="">请选择</option>
+                  <option>价格合适</option>
+                  <option>安全可靠</option>
+                  <option>质量稳定</option>
+                  <option>使用方便</option>
+                  <option>耐用省心</option>
+                  <option>售后靠谱</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>5. 你做决定时更像哪种人？</span>
+                <select name="decisionStyle" required>
+                  <option value="">请选择</option>
+                  <option>想快速得到明确答案</option>
+                  <option>会比较几种选择</option>
+                  <option>喜欢看理由和细节</option>
+                  <option>容易纠结，需要帮我拍板</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>6. 你希望推荐更偏向哪种？</span>
+                <select name="style" required>
+                  <option value="">请选择</option>
+                  <option>最适合就好</option>
+                  <option>稳妥不踩雷</option>
+                  <option>长期更划算</option>
+                  <option>简单省事</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>7. 你最不能接受什么？</span>
+                <select name="avoid" required>
+                  <option value="">请选择</option>
+                  <option>太贵</option>
+                  <option>太复杂</option>
+                  <option>售后差</option>
+                  <option>隐藏费用</option>
+                  <option>风险高</option>
+                  <option>质量不稳定</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>8. 你能接受多复杂？</span>
+                <select name="complexity" required>
+                  <option value="">请选择</option>
+                  <option>越简单越好</option>
+                  <option>可以接受一点设置</option>
+                  <option>愿意研究参数和功能</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>9. 你对新东西的态度是？</span>
+                <select name="risk" required>
+                  <option value="">请选择</option>
+                  <option>保守，最好成熟稳定</option>
+                  <option>中等，可以尝试</option>
+                  <option>愿意尝鲜</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>10. 你喜欢的感觉更接近？</span>
+                <select name="taste" required>
+                  <option value="">请选择</option>
+                  <option>实用朴素</option>
+                  <option>干净简洁</option>
+                  <option>有品质感</option>
+                  <option>有设计感</option>
+                  <option>温暖舒服</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>11. 你最近最想改善的是？</span>
+                <select name="innerNeed" required>
+                  <option value="">请选择</option>
+                  <option>省钱压力</option>
+                  <option>生活效率</option>
+                  <option>身体健康</option>
+                  <option>家人照顾</option>
+                  <option>情绪舒适</option>
+                  <option>自我提升</option>
+                </select>
+              </label>
+
+              <label class="field field-full">
+                <span>可选：你平时喜欢什么？</span>
+                <input name="hobby" placeholder="比如做饭、数码、运动、护肤、看书、收纳" />
+              </label>
+
+              <button class="primary-button field-full" id="profileNextButton" type="button">下一步：你需要什么？</button>
+            </form>
+          </div>
+
+          <div id="needStep" class="step-view page-view hidden">
+            <div class="section-heading">
+              <p class="eyebrow">需求界面</p>
+              <h2>你需要什么？</h2>
+              <p>直接说一句话就行。可以是明确商品，也可以是一种情况。</p>
+            </div>
+
+            <div class="need-box">
+              <textarea id="needInput" rows="4" placeholder="比如：我想买个电动牙刷&#10;想给我爸买条烟&#10;给姥姥买个保暖棉裤&#10;孩子写作业眼睛累"></textarea>
+              <div class="actions-row">
+                <button class="primary-button" id="recommendButton" type="button">帮我推荐</button>
+                <button class="ghost-button" id="clearNeedButton" type="button">清空</button>
+              </div>
+            </div>
+
+            <div class="sample-strip" aria-label="测试样例">
+              <button type="button">我需要一个电动牙刷</button>
+              <button type="button">我需要一台剪视频电脑</button>
+              <button type="button">想给我爸买条烟</button>
+              <button type="button">给姥姥买个保暖棉裤</button>
+              <button type="button">孩子写作业眼睛累</button>
+              <button type="button">朋友生日不知道送什么</button>
+            </div>
+
+          </div>
+
+          <div id="resultStep" class="step-view page-view hidden">
+            <div id="resultBlock" class="result-grid"></div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./app.js?v=20260624-pwa"></script>
+  </body>
+</html>
