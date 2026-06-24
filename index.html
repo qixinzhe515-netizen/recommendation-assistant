@@ -14,34 +14,39 @@
     <title>推荐助手</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icon.svg" />
-    <link rel="stylesheet" href="./styles.css?v=20260624-platform1" />
+    <link rel="stylesheet" href="./styles.css?v=20260624-browser1" />
   </head>
   <body>
     <main class="app-shell">
-      <div class="mini-actions" aria-label="页面操作">
-        <button class="mini-button hidden" id="resetButton" type="button">重新答题</button>
-        <button class="mini-button hidden" id="backNeedButton" type="button">返回需求</button>
-        <button class="mini-button" id="shareButton" type="button">分享</button>
-      </div>
-      <section class="topbar" aria-label="应用状态">
-        <div>
-          <p class="eyebrow">只推荐一个最适合的选择</p>
-          <h1>推荐助手</h1>
+      <section class="browser-window" aria-label="推荐助手">
+        <div class="browser-bar">
+          <div class="browser-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="browser-address">recommend.app / 只推荐一个最适合的选择</div>
+          <div class="mini-actions" aria-label="页面操作">
+            <button class="mini-button hidden" id="resetButton" type="button">重新答题</button>
+            <button class="mini-button hidden" id="backNeedButton" type="button">返回需求</button>
+            <button class="mini-button" id="shareButton" type="button">分享</button>
+          </div>
         </div>
-      </section>
+        <section class="topbar" aria-label="应用状态">
+          <div>
+            <p class="eyebrow">只推荐一个最适合的选择</p>
+            <h1>推荐助手</h1>
+          </div>
+        </section>
 
-      <section class="layout">
-        <section class="main-panel">
+        <section class="layout">
+          <section class="main-panel">
           <div id="profileStep" class="step-view page-view">
             <div class="section-heading">
               <p class="eyebrow">问题界面</p>
-              <h2>先回答 12 个精准问题</h2>
-              <p>用很少的信息了解你的现状、习惯和偏好。后面每次推荐都会基于这些答案判断。</p>
+              <h2>先回答 10 个关键问题</h2>
+              <p>问题只保留会影响推荐判断的部分：你的状态、习惯、偏好和能用的平台。</p>
             </div>
 
             <form id="profileForm" class="question-grid">
               <label class="field">
-                <span>1. 你现在的生活状态更接近？</span>
+                <span>1. 你现在更接近哪种状态？</span>
                 <select name="lifeStage" required>
                   <option value="">请选择</option>
                   <option>学习阶段</option>
@@ -53,7 +58,7 @@
               </label>
 
               <label class="field">
-                <span>2. 你的日常节奏是？</span>
+                <span>2. 你的日常节奏？</span>
                 <select name="dailyPace" required>
                   <option value="">请选择</option>
                   <option>很忙，想省时间</option>
@@ -64,7 +69,7 @@
               </label>
 
               <label class="field">
-                <span>3. 你通常怎么花钱？</span>
+                <span>3. 你买东西的花钱方式？</span>
                 <select name="budget" required>
                   <option value="">请选择</option>
                   <option>省钱优先</option>
@@ -75,7 +80,7 @@
               </label>
 
               <label class="field">
-                <span>4. 你选东西最看重哪一个？</span>
+                <span>4. 你最看重什么？</span>
                 <select name="priority" required>
                   <option value="">请选择</option>
                   <option>价格合适</option>
@@ -88,29 +93,7 @@
               </label>
 
               <label class="field">
-                <span>5. 你做决定时更像哪种人？</span>
-                <select name="decisionStyle" required>
-                  <option value="">请选择</option>
-                  <option>想快速得到明确答案</option>
-                  <option>会比较几种选择</option>
-                  <option>喜欢看理由和细节</option>
-                  <option>容易纠结，需要帮我拍板</option>
-                </select>
-              </label>
-
-              <label class="field">
-                <span>6. 你希望推荐更偏向哪种？</span>
-                <select name="style" required>
-                  <option value="">请选择</option>
-                  <option>最适合就好</option>
-                  <option>稳妥不踩雷</option>
-                  <option>长期更划算</option>
-                  <option>简单省事</option>
-                </select>
-              </label>
-
-              <label class="field">
-                <span>7. 你最不能接受什么？</span>
+                <span>5. 你最不能接受什么？</span>
                 <select name="avoid" required>
                   <option value="">请选择</option>
                   <option>太贵</option>
@@ -123,7 +106,7 @@
               </label>
 
               <label class="field">
-                <span>8. 你能接受多复杂？</span>
+                <span>6. 你能接受的使用难度？</span>
                 <select name="complexity" required>
                   <option value="">请选择</option>
                   <option>越简单越好</option>
@@ -133,7 +116,7 @@
               </label>
 
               <label class="field">
-                <span>9. 你对新东西的态度是？</span>
+                <span>7. 你对新东西的态度？</span>
                 <select name="risk" required>
                   <option value="">请选择</option>
                   <option>保守，最好成熟稳定</option>
@@ -143,7 +126,7 @@
               </label>
 
               <label class="field">
-                <span>10. 你喜欢的感觉更接近？</span>
+                <span>8. 你喜欢哪种感觉？</span>
                 <select name="taste" required>
                   <option value="">请选择</option>
                   <option>实用朴素</option>
@@ -155,7 +138,7 @@
               </label>
 
               <label class="field">
-                <span>11. 你最近最想改善的是？</span>
+                <span>9. 你最近更想改善什么？</span>
                 <select name="innerNeed" required>
                   <option value="">请选择</option>
                   <option>省钱压力</option>
@@ -168,7 +151,7 @@
               </label>
 
               <label class="field">
-                <span>12. 你平时能在哪些平台买？</span>
+                <span>10. 你平时能在哪些平台买？</span>
                 <select name="shoppingAccess" required>
                   <option value="">请选择</option>
                   <option>都可以</option>
@@ -218,11 +201,12 @@
           <div id="resultStep" class="step-view page-view hidden">
             <div id="resultBlock" class="result-grid"></div>
           </div>
+          </section>
         </section>
       </section>
     </main>
     <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="./app.js?v=20260624-platform1"></script>
+    <script src="./app.js?v=20260624-browser1"></script>
   </body>
 </html>

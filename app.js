@@ -706,8 +706,8 @@ function saveProfile(form) {
     dailyPace: data.get("dailyPace"),
     budget: data.get("budget"),
     priority: data.get("priority"),
-    decisionStyle: data.get("decisionStyle"),
-    style: data.get("style"),
+    decisionStyle: "想快速得到明确答案",
+    style: "最适合就好",
     avoid: data.get("avoid"),
     complexity: data.get("complexity"),
     risk: data.get("risk"),
@@ -726,7 +726,7 @@ function handleProfileNext() {
   const missingField = Array.from(profileForm.querySelectorAll("select[required]")).find((field) => !field.value);
   if (missingField) {
     missingField.focus();
-    showToast("先把这 12 个问题选完");
+    showToast("先把这 10 个问题选完");
     return;
   }
 
