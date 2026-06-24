@@ -14,7 +14,7 @@
     <title>推荐助手</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icon.svg" />
-    <link rel="stylesheet" href="./styles.css?v=20260624-library1" />
+    <link rel="stylesheet" href="./styles.css?v=20260624-platform1" />
   </head>
   <body>
     <main class="app-shell">
@@ -35,7 +35,7 @@
           <div id="profileStep" class="step-view page-view">
             <div class="section-heading">
               <p class="eyebrow">问题界面</p>
-              <h2>先回答 11 个精准问题</h2>
+              <h2>先回答 12 个精准问题</h2>
               <p>用很少的信息了解你的现状、习惯和偏好。后面每次推荐都会基于这些答案判断。</p>
             </div>
 
@@ -167,6 +167,19 @@
                 </select>
               </label>
 
+              <label class="field">
+                <span>12. 你平时能在哪些平台买？</span>
+                <select name="shoppingAccess" required>
+                  <option value="">请选择</option>
+                  <option>都可以</option>
+                  <option>只用京东</option>
+                  <option>只用淘宝/天猫</option>
+                  <option>只用拼多多</option>
+                  <option>淘宝/拼多多，不用京东</option>
+                  <option>京东/淘宝，不用拼多多</option>
+                </select>
+              </label>
+
               <label class="field field-full">
                 <span>可选：你平时喜欢什么？</span>
                 <input name="hobby" placeholder="比如做饭、数码、运动、护肤、看书、收纳" />
@@ -210,6 +223,6 @@
     </main>
     <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="./app.js?v=20260624-library1"></script>
+    <script src="./app.js?v=20260624-platform1"></script>
   </body>
 </html>

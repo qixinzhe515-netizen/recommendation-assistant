@@ -615,10 +615,16 @@ const supplementalProductRows = [
 
 const realProductLibrary = {
   人体工学鼠标: {
-    realTitle: "无线人体工学垂直鼠标",
-    imageUrl: "https://item-shopping.c.yimg.jp/i/n/wayetto_wtms0016",
+    realTitle: "罗技 Lift 类无线人体工学垂直鼠标",
+    imageUrl: "https://f.fcdn.app/imgs/edd788/www.zonatecno.com.uy/zoteuy/a87d/webp/catalogo/104132_104132_1/1024-1024/mouse-logitech-inalambrico-lift-vertical-910-006469-white-mouse-logitech-inalambrico-lift-vertical-910-006469-white.jpg",
     imageSource: "商品实图",
     purchaseUrl: "https://s.taobao.com/search?q=%E4%BA%BA%E4%BD%93%E5%B7%A5%E5%AD%A6%20%E5%9E%82%E7%9B%B4%20%E9%BC%A0%E6%A0%87",
+    platformLinks: {
+      京东: "https://search.jd.com/Search?keyword=%E4%BA%BA%E4%BD%93%E5%B7%A5%E5%AD%A6%20%E5%9E%82%E7%9B%B4%20%E9%BC%A0%E6%A0%87",
+      淘宝: "https://s.taobao.com/search?q=%E4%BA%BA%E4%BD%93%E5%B7%A5%E5%AD%A6%20%E5%9E%82%E7%9B%B4%20%E9%BC%A0%E6%A0%87",
+      天猫: "https://s.taobao.com/search?q=%E4%BA%BA%E4%BD%93%E5%B7%A5%E5%AD%A6%20%E5%9E%82%E7%9B%B4%20%E9%BC%A0%E6%A0%87",
+      拼多多: "https://mobile.yangkeduo.com/search_result.html?search_key=%E4%BA%BA%E4%BD%93%E5%B7%A5%E5%AD%A6%20%E5%9E%82%E7%9B%B4%20%E9%BC%A0%E6%A0%87",
+    },
     sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
   },
   中端声波电动牙刷: {
@@ -626,6 +632,12 @@ const realProductLibrary = {
     imageUrl: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
     imageSource: "商品实图",
     purchaseUrl: "https://search.jd.com/Search?keyword=%E4%B8%AD%E7%AB%AF%20%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7",
+    platformLinks: {
+      京东: "https://search.jd.com/Search?keyword=%E4%B8%AD%E7%AB%AF%20%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7",
+      淘宝: "https://s.taobao.com/search?q=%E4%B8%AD%E7%AB%AF%20%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7",
+      天猫: "https://s.taobao.com/search?q=%E4%B8%AD%E7%AB%AF%20%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7",
+      拼多多: "https://mobile.yangkeduo.com/search_result.html?search_key=%E4%B8%AD%E7%AB%AF%20%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7",
+    },
     sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
   },
   基础款声波电动牙刷: {
@@ -633,6 +645,24 @@ const realProductLibrary = {
     imageUrl: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
     imageSource: "商品实图",
     purchaseUrl: "https://mobile.yangkeduo.com/search_result.html?search_key=%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7%20%E5%9F%BA%E7%A1%80%E6%AC%BE",
+    platformLinks: {
+      京东: "https://search.jd.com/Search?keyword=%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7%20%E5%9F%BA%E7%A1%80%E6%AC%BE",
+      淘宝: "https://s.taobao.com/search?q=%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7%20%E5%9F%BA%E7%A1%80%E6%AC%BE",
+      天猫: "https://s.taobao.com/search?q=%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7%20%E5%9F%BA%E7%A1%80%E6%AC%BE",
+      拼多多: "https://mobile.yangkeduo.com/search_result.html?search_key=%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7%20%E5%9F%BA%E7%A1%80%E6%AC%BE",
+    },
+    sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
+  },
+  机械键盘静音轴: {
+    realTitle: "静音轴机械键盘",
+    imageUrl: "https://rotoboxph.com/cdn/shop/files/BLACK_1a5f2043-fd85-4e25-ac84-b66c3b416f88.jpg?v=1758247865&width=1445",
+    imageSource: "商品实图",
+    platformLinks: {
+      京东: "https://search.jd.com/Search?keyword=%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%20%E9%9D%99%E9%9F%B3%E8%BD%B4%20%E5%8A%9E%E5%85%AC",
+      淘宝: "https://s.taobao.com/search?q=%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%20%E9%9D%99%E9%9F%B3%E8%BD%B4%20%E5%8A%9E%E5%85%AC",
+      天猫: "https://s.taobao.com/search?q=%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%20%E9%9D%99%E9%9F%B3%E8%BD%B4%20%E5%8A%9E%E5%85%AC",
+      拼多多: "https://mobile.yangkeduo.com/search_result.html?search_key=%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%20%E9%9D%99%E9%9F%B3%E8%BD%B4%20%E5%8A%9E%E5%85%AC",
+    },
     sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
   },
 };
@@ -645,6 +675,28 @@ function enrichProduct(product) {
 }
 
 const productCatalog = [...baseProductCatalog, ...supplementalProductRows.map(makeProduct)].map(enrichProduct);
+
+function allowedShoppingPlatforms(profile = state.profile || {}) {
+  const access = profile.shoppingAccess || "都可以";
+  if (access === "只用京东") return ["京东"];
+  if (access === "只用淘宝/天猫") return ["淘宝", "天猫"];
+  if (access === "只用拼多多") return ["拼多多"];
+  if (access === "淘宝/拼多多，不用京东") return ["淘宝", "天猫", "拼多多"];
+  if (access === "京东/淘宝，不用拼多多") return ["京东", "淘宝", "天猫"];
+  return ["京东", "淘宝", "天猫", "拼多多"];
+}
+
+function choosePlatformLink(product, profile = state.profile || {}) {
+  const allowed = allowedShoppingPlatforms(profile);
+  const links = product.platformLinks || {};
+  const linkedPlatform = allowed.find((platform) => links[platform]);
+  if (linkedPlatform) return { platform: linkedPlatform, purchaseUrl: links[linkedPlatform] };
+  if (allowed.includes(product.platform)) {
+    return { platform: product.platform, purchaseUrl: product.purchaseUrl || platformSearchUrl(product.platform, product.query) };
+  }
+  const fallbackPlatform = allowed[0] || product.platform;
+  return { platform: fallbackPlatform, purchaseUrl: platformSearchUrl(fallbackPlatform, product.query) };
+}
 
 function saveProfile(form) {
   const data = new FormData(form);
@@ -661,6 +713,7 @@ function saveProfile(form) {
     risk: data.get("risk"),
     taste: data.get("taste"),
     innerNeed: data.get("innerNeed"),
+    shoppingAccess: data.get("shoppingAccess") || "都可以",
     hobby: data.get("hobby") || "",
   };
 
@@ -673,7 +726,7 @@ function handleProfileNext() {
   const missingField = Array.from(profileForm.querySelectorAll("select[required]")).find((field) => !field.value);
   if (missingField) {
     missingField.focus();
-    showToast("先把这 11 个问题选完");
+    showToast("先把这 12 个问题选完");
     return;
   }
 
@@ -687,6 +740,7 @@ function loadProfile() {
   } catch {
     state.profile = null;
   }
+  if (state.profile && !state.profile.shoppingAccess) state.profile.shoppingAccess = "都可以";
   if (state.profile) showNeedStep();
 }
 
@@ -946,18 +1000,19 @@ function recommendationSet(analysis) {
   const winner = ranked[0].score > 0 ? ranked[0] : scoreProduct(productCatalog[0], analysis, profile);
   const product = winner.product;
   const profileReasons = profileReason();
+  const platformChoice = choosePlatformLink(product, profile);
 
   return {
     best: product.realTitle || product.name,
     intro: product.reasons[0] || "适合当前需求的稳妥选择",
-    platform: product.platform,
+    platform: platformChoice.platform,
     price: product.price,
     query: product.query,
     image: productImage(product),
     fallbackImage: fallbackProductImage(product),
     imageSource: product.imageSource || (productRealPhoto(product) ? "商品实图参考" : "示意图"),
     sourceNote: product.sourceNote || "",
-    purchaseUrl: product.purchaseUrl || platformSearchUrl(product.platform, product.query),
+    purchaseUrl: platformChoice.purchaseUrl,
     reasons: [...product.reasons, ...profileReasons, `当前匹配依据：${winner.matched.slice(0, 4).join("、") || "基础需求匹配"}`],
   };
 }
@@ -990,14 +1045,22 @@ function productRealPhoto(product) {
 
   const text = `${product.name} ${product.query} ${(product.keywords || []).join(" ")}`;
   const exact = {
-    人体工学鼠标: "https://item-shopping.c.yimg.jp/i/n/wayetto_wtms0016",
+    人体工学鼠标: "https://f.fcdn.app/imgs/edd788/www.zonatecno.com.uy/zoteuy/a87d/webp/catalogo/104132_104132_1/1024-1024/mouse-logitech-inalambrico-lift-vertical-910-006469-white-mouse-logitech-inalambrico-lift-vertical-910-006469-white.jpg",
     中端声波电动牙刷: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
     基础款声波电动牙刷: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
+    机械键盘静音轴: "https://rotoboxph.com/cdn/shop/files/BLACK_1a5f2043-fd85-4e25-ac84-b66c3b416f88.jpg?v=1758247865&width=1445",
   };
 
   if (exact[product.name]) return exact[product.name];
   if (includesAny(text, ["鼠标"])) return exact["人体工学鼠标"];
   if (includesAny(text, ["电动牙刷", "牙刷"])) return exact["中端声波电动牙刷"];
+  if (includesAny(text, ["键盘", "机械键盘"])) return exact["机械键盘静音轴"];
+  if (includesAny(text, ["护眼灯", "台灯", "屏幕灯", "灯"])) {
+    return "https://www.phb123.com/uploads/allimg/211207/153_211207102018_1.png";
+  }
+  if (includesAny(text, ["棉裤", "保暖裤", "裤"])) {
+    return "https://sizedwell.co.uk/cdn/shop/files/Large_KAM_AW2015_Underwear_KBS830BLK.jpg?v=1702569990";
+  }
   return "";
 }
 
