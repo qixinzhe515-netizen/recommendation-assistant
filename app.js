@@ -954,7 +954,7 @@ function productVisualType(product) {
 function productRealPhoto(product) {
   const text = `${product.name} ${product.query} ${(product.keywords || []).join(" ")}`;
   const exact = {
-    人体工学鼠标: "https://m.pinlasuo.com/Uploads/Ueditor/20221207/1670383957283641.png",
+    人体工学鼠标: "https://item-shopping.c.yimg.jp/i/n/wayetto_wtms0016",
     中端声波电动牙刷: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
     基础款声波电动牙刷: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
   };
