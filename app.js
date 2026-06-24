@@ -464,6 +464,7 @@ function makeProduct(row) {
     innerNeed,
     avoidRisks,
     reasons,
+    asset = {},
   ] = row;
 
   return {
@@ -484,6 +485,7 @@ function makeProduct(row) {
     innerNeed,
     avoidRisks,
     reasons,
+    ...asset,
   };
 }
 
@@ -611,7 +613,38 @@ const supplementalProductRows = [
   ["厨房计时器", "淘宝", "厨房 计时器 做饭", "约 19-69 元", "厨房电器", ["计时器", "厨房", "做饭", "烘焙"], ["本人", "家庭", "长辈"], ["自用场景", "家庭场景", "替别人购买"], ["省钱优先", "性价比优先"], ["使用方便", "价格合适"], ["简单省事"], "越简单越好", "保守，最好成熟稳定", ["实用朴素"], ["生活效率"], ["太贵"], ["做饭烘焙更不容易忘时间", "比手机计时更直观", "适合长辈使用"]],
 ];
 
-const productCatalog = [...baseProductCatalog, ...supplementalProductRows.map(makeProduct)];
+const realProductLibrary = {
+  人体工学鼠标: {
+    realTitle: "无线人体工学垂直鼠标",
+    imageUrl: "https://item-shopping.c.yimg.jp/i/n/wayetto_wtms0016",
+    imageSource: "商品实图",
+    purchaseUrl: "https://s.taobao.com/search?q=%E4%BA%BA%E4%BD%93%E5%B7%A5%E5%AD%A6%20%E5%9E%82%E7%9B%B4%20%E9%BC%A0%E6%A0%87",
+    sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
+  },
+  中端声波电动牙刷: {
+    realTitle: "声波电动牙刷中端款",
+    imageUrl: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
+    imageSource: "商品实图",
+    purchaseUrl: "https://search.jd.com/Search?keyword=%E4%B8%AD%E7%AB%AF%20%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7",
+    sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
+  },
+  基础款声波电动牙刷: {
+    realTitle: "基础款声波电动牙刷",
+    imageUrl: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
+    imageSource: "商品实图",
+    purchaseUrl: "https://mobile.yangkeduo.com/search_result.html?search_key=%E5%A3%B0%E6%B3%A2%20%E7%94%B5%E5%8A%A8%E7%89%99%E5%88%B7%20%E5%9F%BA%E7%A1%80%E6%AC%BE",
+    sourceNote: "真实商品图参考，购买前以平台当前商品页为准",
+  },
+};
+
+function enrichProduct(product) {
+  return {
+    ...product,
+    ...(realProductLibrary[product.name] || {}),
+  };
+}
+
+const productCatalog = [...baseProductCatalog, ...supplementalProductRows.map(makeProduct)].map(enrichProduct);
 
 function saveProfile(form) {
   const data = new FormData(form);
@@ -915,15 +948,16 @@ function recommendationSet(analysis) {
   const profileReasons = profileReason();
 
   return {
-    best: product.name,
+    best: product.realTitle || product.name,
     intro: product.reasons[0] || "适合当前需求的稳妥选择",
     platform: product.platform,
     price: product.price,
     query: product.query,
     image: productImage(product),
     fallbackImage: fallbackProductImage(product),
-    imageSource: productRealPhoto(product) ? "商品实图参考" : "示意图",
-    purchaseUrl: platformSearchUrl(product.platform, product.query),
+    imageSource: product.imageSource || (productRealPhoto(product) ? "商品实图参考" : "示意图"),
+    sourceNote: product.sourceNote || "",
+    purchaseUrl: product.purchaseUrl || platformSearchUrl(product.platform, product.query),
     reasons: [...product.reasons, ...profileReasons, `当前匹配依据：${winner.matched.slice(0, 4).join("、") || "基础需求匹配"}`],
   };
 }
@@ -952,6 +986,8 @@ function productVisualType(product) {
 }
 
 function productRealPhoto(product) {
+  if (product.imageUrl) return product.imageUrl;
+
   const text = `${product.name} ${product.query} ${(product.keywords || []).join(" ")}`;
   const exact = {
     人体工学鼠标: "https://item-shopping.c.yimg.jp/i/n/wayetto_wtms0016",
@@ -1098,6 +1134,7 @@ function renderResults(analysis) {
           <p class="product-intro">${set.intro}</p>
           <p class="product-meta">平台：${set.platform}</p>
           <p class="product-price">${set.price}</p>
+          ${set.sourceNote ? `<p class="source-note">${set.sourceNote}</p>` : ""}
         </div>
       </div>
       <div class="recommend-copy">
