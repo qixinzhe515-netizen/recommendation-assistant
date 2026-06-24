@@ -926,25 +926,135 @@ function recommendationSet(analysis) {
   };
 }
 
+function svgText(text = "") {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function productVisualType(product) {
+  const text = `${product.name} ${product.query} ${(product.keywords || []).join(" ")} ${(product.categories || []).join(" ")}`;
+  if (includesAny(text, ["鼠标"])) return "mouse";
+  if (includesAny(text, ["牙刷"])) return "toothbrush";
+  if (includesAny(text, ["电脑", "笔记本", "剪视频"])) return "laptop";
+  if (includesAny(text, ["键盘"])) return "keyboard";
+  if (includesAny(text, ["棉裤", "裤", "保暖"])) return "pants";
+  if (includesAny(text, ["护眼灯", "台灯", "屏幕灯", "灯"])) return "lamp";
+  if (includesAny(text, ["烟"])) return "cigarette";
+  if (includesAny(text, ["门锁", "锁"])) return "lock";
+  if (includesAny(text, ["包"])) return "bag";
+  if (includesAny(text, ["礼盒", "坚果", "水果", "花茶"])) return "gift";
+  return "generic";
+}
+
+function productShape(type, accent) {
+  const commonShadow = `filter="url(#shadow)"`;
+  const shapes = {
+    mouse: `
+      <ellipse cx="360" cy="294" rx="138" ry="184" fill="#f8f8f8" stroke="#dadde2" stroke-width="5" ${commonShadow}/>
+      <path d="M360 112c0 58 0 112 0 166" stroke="#c9cdd4" stroke-width="5" stroke-linecap="round"/>
+      <rect x="338" y="128" width="44" height="86" rx="22" fill="${accent}"/>
+      <ellipse cx="360" cy="438" rx="78" ry="22" fill="#0f1720" opacity="0.08"/>
+    `,
+    toothbrush: `
+      <rect x="334" y="176" width="54" height="288" rx="27" fill="${accent}" ${commonShadow}/>
+      <rect x="312" y="116" width="98" height="82" rx="28" fill="#f6f7fb" stroke="#d9dde3" stroke-width="5"/>
+      <g stroke="#dfe4ea" stroke-width="8" stroke-linecap="round">
+        <path d="M328 132v42"/><path d="M350 128v50"/><path d="M372 128v50"/><path d="M394 132v42"/>
+      </g>
+      <circle cx="361" cy="344" r="12" fill="#fff" opacity="0.85"/>
+    `,
+    laptop: `
+      <rect x="166" y="146" width="388" height="248" rx="24" fill="#1f2937" ${commonShadow}/>
+      <rect x="190" y="170" width="340" height="200" rx="14" fill="#f9fbff"/>
+      <path d="M128 402h464l-36 66H164z" fill="#d9dde4" stroke="#c1c7d0" stroke-width="5"/>
+      <rect x="302" y="420" width="116" height="14" rx="7" fill="#b9c0ca"/>
+      <circle cx="360" cy="268" r="62" fill="${accent}" opacity="0.16"/>
+    `,
+    keyboard: `
+      <rect x="118" y="194" width="484" height="260" rx="34" fill="#f7f8fa" stroke="#d9dde4" stroke-width="5" ${commonShadow}/>
+      ${Array.from({ length: 24 }, (_, index) => {
+        const col = index % 8;
+        const row = Math.floor(index / 8);
+        return `<rect x="${150 + col * 54}" y="${230 + row * 54}" width="38" height="32" rx="8" fill="${index === 5 ? accent : "#ffffff"}" stroke="#d9dde4" stroke-width="3"/>`;
+      }).join("")}
+      <rect x="230" y="388" width="260" height="34" rx="12" fill="#ffffff" stroke="#d9dde4" stroke-width="3"/>
+    `,
+    pants: `
+      <path d="M270 138h180l32 330h-94l-28-204-30 204h-94z" fill="#3f4b5b" ${commonShadow}/>
+      <path d="M276 138h168l-18 62H294z" fill="${accent}"/>
+      <path d="M360 204v256" stroke="#2c3541" stroke-width="8" stroke-linecap="round"/>
+      <path d="M286 474h88M384 474h88" stroke="#2c3541" stroke-width="12" stroke-linecap="round"/>
+    `,
+    lamp: `
+      <path d="M300 154h120l64 144H236z" fill="${accent}" ${commonShadow}/>
+      <path d="M332 298h56v150h-56z" fill="#5c6570"/>
+      <path d="M246 458h228" stroke="#5c6570" stroke-width="28" stroke-linecap="round"/>
+      <path d="M250 330c64 30 156 30 220 0" stroke="#ffd6df" stroke-width="18" stroke-linecap="round" opacity="0.75"/>
+    `,
+    cigarette: `
+      <rect x="190" y="178" width="340" height="260" rx="28" fill="#ffffff" stroke="#e2e5e9" stroke-width="5" ${commonShadow}/>
+      <rect x="190" y="178" width="340" height="86" rx="28" fill="${accent}"/>
+      <g transform="translate(240 294)">
+        <rect x="0" y="0" width="220" height="34" rx="17" fill="#fff8e6" stroke="#e6d4aa" stroke-width="4"/>
+        <rect x="166" y="0" width="54" height="34" rx="17" fill="#d7a45b"/>
+        <rect x="28" y="54" width="190" height="30" rx="15" fill="#fff8e6" stroke="#e6d4aa" stroke-width="4"/>
+        <rect x="166" y="54" width="52" height="30" rx="15" fill="#d7a45b"/>
+      </g>
+    `,
+    lock: `
+      <path d="M250 258v-62c0-64 48-110 110-110s110 46 110 110v62h-58v-60c0-34-21-58-52-58s-52 24-52 58v60z" fill="#c9ced6" ${commonShadow}/>
+      <rect x="210" y="246" width="300" height="230" rx="36" fill="${accent}" ${commonShadow}/>
+      <circle cx="360" cy="348" r="28" fill="#fff" opacity="0.9"/>
+      <rect x="348" y="366" width="24" height="54" rx="12" fill="#fff" opacity="0.9"/>
+    `,
+    bag: `
+      <path d="M250 214c8-72 52-112 110-112s102 40 110 112" fill="none" stroke="#505866" stroke-width="24" stroke-linecap="round"/>
+      <rect x="186" y="198" width="348" height="270" rx="38" fill="${accent}" ${commonShadow}/>
+      <rect x="224" y="246" width="272" height="172" rx="24" fill="#fff" opacity="0.18"/>
+    `,
+    gift: `
+      <rect x="170" y="232" width="380" height="232" rx="28" fill="#fff" stroke="#eadce0" stroke-width="5" ${commonShadow}/>
+      <rect x="150" y="184" width="420" height="76" rx="24" fill="${accent}"/>
+      <rect x="338" y="184" width="44" height="280" fill="#ffd7df"/>
+      <path d="M360 184c-42-64-118-42-88 8 18 30 58 18 88-8Zm0 0c42-64 118-42 88 8-18 30-58 18-88-8Z" fill="#ffd7df"/>
+    `,
+    generic: `
+      <rect x="174" y="176" width="372" height="288" rx="36" fill="#ffffff" stroke="#e3e6eb" stroke-width="5" ${commonShadow}/>
+      <circle cx="360" cy="280" r="78" fill="${accent}" opacity="0.15"/>
+      <rect x="258" y="246" width="204" height="92" rx="28" fill="${accent}"/>
+      <rect x="288" y="366" width="144" height="20" rx="10" fill="${accent}" opacity="0.35"/>
+    `,
+  };
+  return shapes[type] || shapes.generic;
+}
+
 function productImage(product) {
-  const title = product.name.slice(0, 10);
-  const category = product.categories?.[0] || "推荐商品";
-  const palette = product.platform === "京东" ? ["#fff7f3", "#f05a3b"] : product.platform === "淘宝" || product.platform === "天猫" ? ["#fff4e8", "#ff7a1a"] : ["#f3fff9", "#16a36f"];
+  const title = svgText(product.name.slice(0, 12));
+  const category = svgText(product.categories?.[0] || "推荐商品");
+  const type = productVisualType(product);
+  const accent = product.platform === "京东" ? "#ff2442" : product.platform === "淘宝" || product.platform === "天猫" ? "#ff5a1f" : "#ff2442";
   const svg = `
     <svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720">
       <defs>
         <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="${palette[0]}"/>
-          <stop offset="1" stop-color="#ffffff"/>
+          <stop offset="0" stop-color="#ffffff"/>
+          <stop offset="1" stop-color="#fff1f4"/>
         </linearGradient>
+        <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+          <feDropShadow dx="0" dy="22" stdDeviation="20" flood-color="#1f2937" flood-opacity="0.14"/>
+        </filter>
       </defs>
-      <rect width="720" height="720" rx="42" fill="url(#bg)"/>
-      <rect x="72" y="82" width="576" height="430" rx="34" fill="#fff" stroke="#ececec" stroke-width="3"/>
-      <circle cx="360" cy="278" r="118" fill="${palette[1]}" opacity="0.12"/>
-      <rect x="238" y="226" width="244" height="126" rx="34" fill="${palette[1]}" opacity="0.88"/>
-      <rect x="278" y="366" width="164" height="24" rx="12" fill="${palette[1]}" opacity="0.35"/>
-      <text x="360" y="578" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#182125">${title}</text>
-      <text x="360" y="632" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#647174">${category} · ${product.platform}</text>
+      <rect width="720" height="720" rx="46" fill="url(#bg)"/>
+      <rect x="58" y="58" width="604" height="604" rx="42" fill="#fff" opacity="0.82"/>
+      <circle cx="132" cy="122" r="56" fill="${accent}" opacity="0.08"/>
+      <circle cx="604" cy="184" r="78" fill="${accent}" opacity="0.06"/>
+      ${productShape(type, accent)}
+      <rect x="84" y="574" width="552" height="1" fill="#edf0f4"/>
+      <text x="360" y="622" text-anchor="middle" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#182125">${title}</text>
+      <text x="360" y="660" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#6b747a">${category} · ${svgText(product.platform)}</text>
     </svg>
   `;
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;

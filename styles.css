@@ -395,18 +395,19 @@ textarea:focus {
 
 .product-card-top {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 18px;
   align-items: start;
 }
 
 .product-photo {
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   background: #fff;
   object-fit: cover;
+  box-shadow: 0 12px 28px rgba(24, 33, 37, 0.08);
 }
 
 .product-summary {
@@ -504,8 +505,12 @@ textarea:focus {
   }
 
   .product-card-top {
-    grid-template-columns: 118px minmax(0, 1fr);
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .product-photo {
+    max-height: 260px;
   }
 
   .product-summary h3 {
