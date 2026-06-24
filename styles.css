@@ -262,6 +262,10 @@ textarea {
   line-height: 1.6;
 }
 
+textarea::placeholder {
+  color: #b8c0c7;
+}
+
 input:focus,
 select:focus,
 textarea:focus {
@@ -337,30 +341,6 @@ textarea:focus {
 .actions-row {
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.sample-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.sample-strip button {
-  min-height: 34px;
-  padding: 0 11px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--blue);
-  cursor: pointer;
-  font-size: 0.88rem;
-  font-weight: 760;
-}
-
-.sample-strip button:hover {
-  border-color: var(--blue);
-  background: #eef4fb;
 }
 
 .analysis-block,

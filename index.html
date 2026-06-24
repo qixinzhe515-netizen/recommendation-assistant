@@ -14,7 +14,7 @@
     <title>推荐助手</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="apple-touch-icon" href="./icon.svg" />
-    <link rel="stylesheet" href="./styles.css?v=20260624-browser1" />
+    <link rel="stylesheet" href="./styles.css?v=20260624-prompt1" />
   </head>
   <body>
     <main class="app-shell">
@@ -151,15 +151,24 @@
               </label>
 
               <label class="field">
-                <span>10. 你平时能在哪些平台买？</span>
+                <span>10. 你手机里有哪些购物 App？</span>
                 <select name="shoppingAccess" required>
                   <option value="">请选择</option>
-                  <option>都可以</option>
+                  <option>四个都有</option>
+                  <option>京东 / 淘宝 / 拼多多</option>
+                  <option>京东 / 淘宝 / 抖音</option>
+                  <option>京东 / 拼多多 / 抖音</option>
+                  <option>淘宝 / 拼多多 / 抖音</option>
+                  <option>京东 / 淘宝</option>
+                  <option>京东 / 拼多多</option>
+                  <option>京东 / 抖音</option>
+                  <option>淘宝 / 拼多多</option>
+                  <option>淘宝 / 抖音</option>
+                  <option>拼多多 / 抖音</option>
                   <option>只用京东</option>
-                  <option>只用淘宝/天猫</option>
+                  <option>只用淘宝</option>
                   <option>只用拼多多</option>
-                  <option>淘宝/拼多多，不用京东</option>
-                  <option>京东/淘宝，不用拼多多</option>
+                  <option>只用抖音</option>
                 </select>
               </label>
 
@@ -180,20 +189,11 @@
             </div>
 
             <div class="need-box">
-              <textarea id="needInput" rows="4" placeholder="比如：我想买个电动牙刷&#10;想给我爸买条烟&#10;给姥姥买个保暖棉裤&#10;孩子写作业眼睛累"></textarea>
+              <textarea id="needInput" rows="4" placeholder="我想买个毛巾"></textarea>
               <div class="actions-row">
                 <button class="primary-button" id="recommendButton" type="button">帮我推荐</button>
                 <button class="ghost-button" id="clearNeedButton" type="button">清空</button>
               </div>
-            </div>
-
-            <div class="sample-strip" aria-label="测试样例">
-              <button type="button">我需要一个电动牙刷</button>
-              <button type="button">我需要一台剪视频电脑</button>
-              <button type="button">想给我爸买条烟</button>
-              <button type="button">给姥姥买个保暖棉裤</button>
-              <button type="button">孩子写作业眼睛累</button>
-              <button type="button">朋友生日不知道送什么</button>
             </div>
 
           </div>
@@ -207,6 +207,6 @@
     </main>
     <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="./app.js?v=20260624-browser1"></script>
+    <script src="./app.js?v=20260624-prompt1"></script>
   </body>
 </html>

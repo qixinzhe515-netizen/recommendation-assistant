@@ -1,4 +1,4 @@
-const CACHE = "recommendation-demo-v8";
+const CACHE = "recommendation-demo-v9";
 const ASSETS = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", (event) => {
