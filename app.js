@@ -921,6 +921,8 @@ function recommendationSet(analysis) {
     price: product.price,
     query: product.query,
     image: productImage(product),
+    fallbackImage: fallbackProductImage(product),
+    imageSource: productRealPhoto(product) ? "商品实图参考" : "示意图",
     purchaseUrl: platformSearchUrl(product.platform, product.query),
     reasons: [...product.reasons, ...profileReasons, `当前匹配依据：${winner.matched.slice(0, 4).join("、") || "基础需求匹配"}`],
   };
@@ -947,6 +949,20 @@ function productVisualType(product) {
   if (includesAny(text, ["包"])) return "bag";
   if (includesAny(text, ["礼盒", "坚果", "水果", "花茶"])) return "gift";
   return "generic";
+}
+
+function productRealPhoto(product) {
+  const text = `${product.name} ${product.query} ${(product.keywords || []).join(" ")}`;
+  const exact = {
+    人体工学鼠标: "https://m.pinlasuo.com/Uploads/Ueditor/20221207/1670383957283641.png",
+    中端声波电动牙刷: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
+    基础款声波电动牙刷: "https://imgservice.suning.cn/uimg1/b2c/image/rcXvndfNUQF0oFFermw8CQ.jpg_800w_800h_4e",
+  };
+
+  if (exact[product.name]) return exact[product.name];
+  if (includesAny(text, ["鼠标"])) return exact["人体工学鼠标"];
+  if (includesAny(text, ["电动牙刷", "牙刷"])) return exact["中端声波电动牙刷"];
+  return "";
 }
 
 function productShape(type, accent) {
@@ -1031,7 +1047,7 @@ function productShape(type, accent) {
   return shapes[type] || shapes.generic;
 }
 
-function productImage(product) {
+function fallbackProductImage(product) {
   const title = svgText(product.name.slice(0, 12));
   const category = svgText(product.categories?.[0] || "推荐商品");
   const type = productVisualType(product);
@@ -1060,6 +1076,10 @@ function productImage(product) {
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
+function productImage(product) {
+  return productRealPhoto(product) || fallbackProductImage(product);
+}
+
 function renderResults(analysis) {
   const set = recommendationSet(analysis);
   const intro = `根据你的问题，我会按“${analysis.person.label} / ${analysis.need.label}”来推荐。`;
@@ -1068,7 +1088,10 @@ function renderResults(analysis) {
   resultBlock.innerHTML = `
     <article class="result-card best">
       <div class="product-card-top">
-        <img class="product-photo" src="${set.image}" alt="${set.best}" />
+        <div class="product-gallery">
+          <img class="product-photo" src="${set.image}" alt="${set.best}" onerror="this.onerror=null;this.src='${set.fallbackImage}'" />
+          <span class="image-source">${set.imageSource}</span>
+        </div>
         <div class="product-summary">
           <span class="result-label">推荐商品</span>
           <h3>${set.best}</h3>
